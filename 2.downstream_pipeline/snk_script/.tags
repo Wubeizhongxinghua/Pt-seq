@@ -1,0 +1,85 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Path	7.1.make_table_for_plot_by_subtypes_onlyGG.py	/^from pathlib import Path$/;"	i
+Path	7make_table_for_plot_by_subtypes.py	/^from pathlib import Path$/;"	i
+Pool	cisplatin_get_stop.py	/^from multiprocessing import Pool$/;"	i
+Pool	cisplatin_get_stop_onlycov.py	/^from multiprocessing import Pool$/;"	i
+argparse	cisplatin_get_stop.py	/^import argparse$/;"	i
+argparse	cisplatin_get_stop_onlycov.py	/^import argparse$/;"	i
+args	cisplatin_get_stop.py	/^args = parser.parse_args()$/;"	v
+args	cisplatin_get_stop_onlycov.py	/^args = parser.parse_args()$/;"	v
+binomtest	cisplatin_get_stop.py	/^from scipy.stats import binomtest$/;"	i
+binomtest	cisplatin_get_stop_onlycov.py	/^from scipy.stats import binomtest$/;"	i
+click	0.0.cal_sig_bg.py	/^import rich_click as click$/;"	i
+click	0.all_signal.py	/^import rich_click as click$/;"	i
+click	13.divide_gg_not.py	/^import click$/;"	i
+click	14.cal_bin_distribution.py	/^import click$/;"	i
+click	16.pattern_signal.py	/^import rich_click as click$/;"	i
+click	2.cal_g_frac_single.py	/^import click$/;"	i
+click	5.1.cal_chr_distribution_onlyGG.py	/^import click$/;"	i
+click	5.cal_chr_distribution.py	/^import click$/;"	i
+click	7.1.make_table_for_plot_by_subtypes_onlyGG.py	/^import click$/;"	i
+click	7make_table_for_plot_by_subtypes.py	/^import click$/;"	i
+countg_fun	2.cal_g_frac_single.py	/^	def countg_fun(seq):$/;"	f	function:main
+install	0.0.cal_sig_bg.py	/^from rich.traceback import install$/;"	i
+install	0.all_signal.py	/^from rich.traceback import install$/;"	i
+install	16.pattern_signal.py	/^from rich.traceback import install$/;"	i
+judge_gg	13.divide_gg_not.py	/^def judge_gg(aline, ptrn, treatment, cut, rate, treat):$/;"	f
+main	0.0.cal_sig_bg.py	/^def main(inputsig_fwd, inputsig_rvs, outputv):$/;"	f
+main	0.all_signal.py	/^def main(filename, output_filename, strand, threads):$/;"	f
+main	13.divide_gg_not.py	/^def main(treatment, cut, rate):$/;"	f
+main	14.cal_bin_distribution.py	/^def main(workdir):$/;"	f
+main	16.pattern_signal.py	/^def main(trt, cut, rate):$/;"	f
+main	2.cal_g_frac_single.py	/^def main(inputfile, workdir):$/;"	f
+main	5.1.cal_chr_distribution_onlyGG.py	/^def main(workdir):$/;"	f
+main	5.cal_chr_distribution.py	/^def main(workdir):$/;"	f
+main	7.1.make_table_for_plot_by_subtypes_onlyGG.py	/^def main(input,output):$/;"	f
+main	7make_table_for_plot_by_subtypes.py	/^def main(input,output):$/;"	f
+multiprocessing	0.all_signal.py	/^import multiprocessing$/;"	i
+np	2.cal_g_frac_single.py	/^import numpy as np$/;"	i
+parser	cisplatin_get_stop.py	/^parser = argparse.ArgumentParser(description="parse the mpileup file")$/;"	v
+parser	cisplatin_get_stop_onlycov.py	/^parser = argparse.ArgumentParser(description="parse the mpileup file")$/;"	v
+partial	0.all_signal.py	/^from functools import partial$/;"	i
+pd	14.cal_bin_distribution.py	/^import pandas as pd$/;"	i
+pd	2.cal_g_frac_single.py	/^import pandas as pd$/;"	i
+pd	5.1.cal_chr_distribution_onlyGG.py	/^import pandas as pd$/;"	i
+pd	5.cal_chr_distribution.py	/^import pandas as pd$/;"	i
+pd	7.1.make_table_for_plot_by_subtypes_onlyGG.py	/^import pandas as pd$/;"	i
+pd	7make_table_for_plot_by_subtypes.py	/^import pandas as pd$/;"	i
+pl	0.0.cal_sig_bg.py	/^import polars as pl$/;"	i
+pl	14.cal_bin_distribution.py	/^import polars as pl$/;"	i
+pl	16.pattern_signal.py	/^import polars as pl$/;"	i
+pl	5.1.cal_chr_distribution_onlyGG.py	/^import polars as pl$/;"	i
+pl	5.cal_chr_distribution.py	/^import polars as pl$/;"	i
+pool	cisplatin_get_stop.py	/^	pool = Pool(processes=2)  # Number of processes to create$/;"	v
+pool	cisplatin_get_stop_onlycov.py	/^	pool = Pool(processes=2)  # Number of processes to create$/;"	v
+pretty	0.0.cal_sig_bg.py	/^from rich import print, pretty$/;"	i
+pretty	0.all_signal.py	/^from rich import print, pretty$/;"	i
+pretty	16.pattern_signal.py	/^from rich import print, pretty$/;"	i
+print	0.0.cal_sig_bg.py	/^from rich import print, pretty$/;"	i
+print	0.all_signal.py	/^from rich import print, pretty$/;"	i
+print	16.pattern_signal.py	/^from rich import print, pretty$/;"	i
+process_chunk	0.all_signal.py	/^def process_chunk(chunk, strand):$/;"	f
+re	13.divide_gg_not.py	/^import re$/;"	i
+re	2.cal_g_frac_single.py	/^import re$/;"	i
+re	cisplatin_get_stop.py	/^import re$/;"	i
+re	cisplatin_get_stop_onlycov.py	/^import re$/;"	i
+read_in_chunks	0.all_signal.py	/^def read_in_chunks(file, chunk_size=1000):$/;"	f
+rmdup	0.gen_site_bed.sh	/^rmdup () {$/;"	f
+stop_site	cisplatin_get_stop.py	/^def stop_site(args):$/;"	f
+stop_site	cisplatin_get_stop_onlycov.py	/^def stop_site(args):$/;"	f
+subprocess	cisplatin_get_stop.py	/^import subprocess$/;"	i
+subprocess	cisplatin_get_stop_onlycov.py	/^import subprocess$/;"	i
+sys	cisplatin_get_stop.py	/^import sys$/;"	i
+sys	cisplatin_get_stop_onlycov.py	/^import sys$/;"	i
+t1	cisplatin_get_stop.py	/^	t1 = time.time()$/;"	v
+t1	cisplatin_get_stop_onlycov.py	/^	t1 = time.time()$/;"	v
+tasks	cisplatin_get_stop.py	/^	tasks = [$/;"	v
+tasks	cisplatin_get_stop_onlycov.py	/^	tasks = [$/;"	v
+time	cisplatin_get_stop.py	/^import time$/;"	i
+time	cisplatin_get_stop_onlycov.py	/^import time$/;"	i
+tqdm	2.cal_g_frac_single.py	/^from tqdm import tqdm$/;"	i
