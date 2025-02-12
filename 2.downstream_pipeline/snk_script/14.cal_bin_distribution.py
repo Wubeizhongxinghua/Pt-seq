@@ -68,7 +68,7 @@ def main(workdir):
 
 
    # 原假设，所有区域在所有染色体上平均分布（按照长度加权平均）：计算expectation 计算所有region的长度，并且按照染色体长度比例进行分配
-   mean_dmrs = df.groupby(pl.col('treatment'), pl.col('condition')).agg([
+   mean_dmrs = df.group_by(pl.col('treatment'), pl.col('condition')).agg([
       pl.col('length').mean().alias('length'),
       pl.col('chr').count().alias('number')
    ])
@@ -101,7 +101,7 @@ def main(workdir):
          #pl.lit(aantibody).alias('antibody'),
       expall = expall.vstack(exptmp)
 
-   obs = df.groupby(pl.col('chr'), pl.col('treatment'), pl.col('condition')).agg([
+   obs = df.group_by(pl.col('chr'), pl.col('treatment'), pl.col('condition')).agg([
       pl.col('length').sum().alias('obs')
    ])
    #obs = obs.pivot(index='chr',values='length')
@@ -114,7 +114,7 @@ def main(workdir):
       pl.col('treatment'),
       pl.col('condition'),
       pl.col('enrichment')
-   ]).write_csv(f'{workdir}/stopsite_enrichment.txt',has_header=True, separator='\t')
+   ]).write_csv(f'{workdir}/stopsite_enrichment.txt',include_header=True, separator='\t')
       #pl.col('antibody'),
 
 if  __name__ == '__main__':

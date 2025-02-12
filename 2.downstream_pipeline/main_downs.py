@@ -23,8 +23,8 @@ Generate stop sites (ctrl, treat, treat.final) and seq of stop sites.
 """
 
 # You need to set:
-trts = ['C1', 'C2', 'C3', 'C4', 'C5', 'in-C1', 'in-C2', 'in-C4', 'L1', 'L2', 'L3']
-ctrltrt = 'NT'
+trts = ['sample1']
+ctrltrt = 'sample2'
 
 
 

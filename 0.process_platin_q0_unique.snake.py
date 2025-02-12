@@ -5,7 +5,7 @@ Author: Li Mingyang (limingyang200101@gmail.com)
 	 
 Institute: AAIS, Peking University	
 	 
-File Name: PTseq_analysis/xx.py																			  
+File Name: PTseq_analysis/xx.py
 	 
 Permission is hereby granted, free of charge, to any person obtaining a copy	
 of this software and associated documentation files (the "Software"), to deal	
@@ -22,7 +22,7 @@ genome_dir = ""
 genome_fasta_file = ""
 genome_index_basename = ""
 
-datasets = []
+datasets = ['example_data']
 
 sample_id_dict = {}
 
@@ -42,17 +42,18 @@ def gen_input():
 			required_file.append(f"output/{dataset}/trim/{sample_id}_2_val_2_fastqc.html")
 			required_file.append(f"output/{dataset}/trim/{sample_id}_rmSbfI_1.fq.gz")
 			required_file.append(f"output/{dataset}/trim/{sample_id}_rmSbfI_2.fq.gz")
-			required_file.append(f"output/{dataset}/align/model/{sample_id}_fwd.mip")
-			required_file.append(f"output/{dataset}/align/model/{sample_id}_rvs.mip")
 			required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted.bam")
 			required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted.bam.stat")
 			required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup.bam")
 			required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup.bam.stat")
 			required_file.append(f"output/{dataset}/align/genome/{sample_id}_cover_genome_covered.info")
-			required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_fwd.bam")
-			required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_rvs.bam")
-			required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_fwd_sig.txt")
-			required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_rvs_sig.txt")
+			required_file.append(f"output/{dataset}/align_1_10_40/genome/{sample_id}_genome_sorted_rmdup_fwd.bam")
+			required_file.append(f"output/{dataset}/align_1_10_40/genome/{sample_id}_genome_sorted_rmdup_rvs.bam")
+			required_file.append(f"output/{dataset}/align_1_10_40/genome/{sample_id}_fwd_sig.txt")
+			required_file.append(f"output/{dataset}/align_1_10_40/genome/{sample_id}_rvs_sig.txt")
+			#### If you have model sequence to align to, uncomment it and set model sequence variables.
+			#required_file.append(f"output/{dataset}/align/model/{sample_id}_fwd.mip")
+			#required_file.append(f"output/{dataset}/align/model/{sample_id}_rvs.mip")
 	return required_file
 
 
@@ -109,8 +110,8 @@ rule rm_SbfI:
 
 rule align_genome:
 	input:
-		unfastq1 = "output/{dataset}/align/model/{sample_id}_rmSbfI_1.fq.gz",
-		unfastq2 = "output/{dataset}/align/model/{sample_id}_rmSbfI_2.fq.gz"
+		unfastq1 = "output/{dataset}/trim/{sample_id}_rmSbfI_1.fq.gz",
+		unfastq2 = "output/{dataset}/trim/{sample_id}_rmSbfI_2.fq.gz"
 	output:
 		bam = "output/{dataset}/align/genome/{sample_id}_genome_sorted.bam",
 	threads: 20
@@ -170,7 +171,7 @@ rule ext_bam_all:
 	input:
 		fwdbam = "output/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup.bam",
 	output:
-		fwdbam = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup.bam",
+		fwdbam = "output/{dataset}/align_1_10_40/genome/{sample_id}_genome_sorted_rmdup.bam",
 	threads: 3
 	shell:
 		"""
@@ -180,10 +181,10 @@ rule ext_bam_all:
 
 rule divide_by_strand:
 	input:
-		rmdupbam = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup.bam"
+		rmdupbam = "output/{dataset}/align_1_10_40/genome/{sample_id}_genome_sorted_rmdup.bam"
 	output:
-		bam_pos = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_fwd.bam",
-		bam_neg = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_rvs.bam"
+		bam_pos = "output/{dataset}/align_1_10_40/genome/{sample_id}_genome_sorted_rmdup_fwd.bam",
+		bam_neg = "output/{dataset}/align_1_10_40/genome/{sample_id}_genome_sorted_rmdup_rvs.bam"
 	threads: 20
 	log:
 		"output/{dataset}/log/align/genome/{sample_id}_devide.log"
@@ -197,11 +198,11 @@ rule divide_by_strand:
 
 rule to_mip:
 	input:
-		fwdbam = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_fwd.bam",
-		rvsbam = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_rvs.bam"
+		fwdbam = "output/{dataset}/align_1_10_40/genome/{sample_id}_genome_sorted_rmdup_fwd.bam",
+		rvsbam = "output/{dataset}/align_1_10_40/genome/{sample_id}_genome_sorted_rmdup_rvs.bam"
 	output:
-		fwdmip = temp("output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_fwd.mip"),
-		rvsmip = temp("output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_rvs.mip")
+		fwdmip = temp("output/{dataset}/align_1_10_40/genome/{sample_id}_fwd.mip"),
+		rvsmip = temp("output/{dataset}/align_1_10_40/genome/{sample_id}_rvs.mip")
 	threads: 3
 	shell:
 		"""
@@ -212,11 +213,11 @@ rule to_mip:
 
 rule to_sig:
 	input:
-		fwdmip = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_fwd.mip",
-		rvsmip = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_rvs.mip"
+		fwdmip = "output/{dataset}/align_1_10_40/genome/{sample_id}_fwd.mip",
+		rvsmip = "output/{dataset}/align_1_10_40/genome/{sample_id}_rvs.mip"
 	output:
-		fwdsig = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_fwd_sig.txt",
-		rvssig = "output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_rvs_sig.txt"
+		fwdsig = "output/{dataset}/align_1_10_40/genome/{sample_id}_fwd_sig.txt",
+		rvssig = "output/{dataset}/align_1_10_40/genome/{sample_id}_rvs_sig.txt"
 	threads: 3
 	shell:
 		"""
