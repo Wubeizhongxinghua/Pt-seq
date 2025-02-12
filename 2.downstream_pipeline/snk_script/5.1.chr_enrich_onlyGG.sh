@@ -15,6 +15,6 @@ done
 ls -1 ${workdir}/*GG*_stopsite.bed > ${workdir}/stopsite_bedlist_onlyGG.txt
 
 
-/appsnew/home/chengqiyi_pkuhpc/profiles/limingyang/miniforge3/bin/python3 snk_script/5.1.cal_chr_distribution_onlyGG.py -d ${workdir} && \
-/appsnew/home/chengqiyi_pkuhpc/profiles/limingyang/miniforge3/bin/Rscript snk_script/5.1.plot_bar_chrEnrich_onlyGG.r -i ${workdir}/stopsite_enrichment_onlyGG.txt -o ${workdir}/stopsite_enrichment_onlyGG.pdf
+python3 snk_script/5.1.cal_chr_distribution_onlyGG.py -d ${workdir} && \
+Rscript snk_script/5.1.plot_bar_chrEnrich_onlyGG.r -i ${workdir}/stopsite_enrichment_onlyGG.txt -o ${workdir}/stopsite_enrichment_onlyGG.pdf
 #python3 snk_script/5.1.cal_chr_distribution_onlyGG.py -d ${workdir} && \

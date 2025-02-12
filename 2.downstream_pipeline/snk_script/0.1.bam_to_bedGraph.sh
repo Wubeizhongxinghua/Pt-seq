@@ -18,7 +18,6 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 END
 
-source ~/env_backup/.functions
 #!/usr/bin/bash
 
 bam=$1
@@ -26,6 +25,6 @@ bam=$1
 
 mkdir -p bedGraph
 
-/home/chengqiyi_pkuhpc/profiles/limingyang/miniforge3/envs/py310/bin/bamCoverage -b ${bam} -of bedgraph -o bedGraph/${bam%%.bam}_BPM_1mb.bedGraph -bs 1000000 --normalizeUsing BPM -p 10 &
-/home/chengqiyi_pkuhpc/profiles/limingyang/miniforge3/envs/py310/bin/bamCoverage -b ${bam} -of bedgraph -o bedGraph/${bam%%.bam}_1mb.bedGraph -bs 1000000 -p 10 &
+bamCoverage -b ${bam} -of bedgraph -o bedGraph/${bam%%.bam}_BPM_1mb.bedGraph -bs 1000000 --normalizeUsing BPM -p 10 &
+bamCoverage -b ${bam} -of bedgraph -o bedGraph/${bam%%.bam}_1mb.bedGraph -bs 1000000 -p 10 &
 wait

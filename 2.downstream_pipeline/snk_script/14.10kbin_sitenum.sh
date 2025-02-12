@@ -36,9 +36,9 @@ mkdir -p ${workdir}/bin10k
 
 for i in ${trts[@]}
 do
-	awk '{if($10=="treat") print $1"\t"$3"\t"$3+1"\t"$6"\t1\t"$5}' ${workdir}/${i}_pattern.bed | sort -k1,1 -k2,2n - | bedtools map -a /gpfs1/chengqiyi_pkuhpc/limingyang/hg38/hg38_10K_bin_sort.bed -b - -o count > ${workdir}/bin10k/${i}_10k.bed &
+	awk '{if($10=="treat") print $1"\t"$3"\t"$3+1"\t"$6"\t1\t"$5}' ${workdir}/${i}_pattern.bed | sort -k1,1 -k2,2n - | bedtools map -a snk_script/hg38_10K_bin_sort.bed -b - -o count > ${workdir}/bin10k/${i}_10k.bed &
 done
 
-awk '{if($10=="ctrl") print $1"\t"$3"\t"$3+1"\t"$6"\t1\t"$5}' ${workdir}/${trts[1]}_pattern.bed | sort -k1,1 -k2,2n - | bedtools map -a /gpfs1/chengqiyi_pkuhpc/limingyang/hg38/hg38_10K_bin_sort.bed -b - -o count > ${workdir}/bin10k/ctrl_10k.bed &
+awk '{if($10=="ctrl") print $1"\t"$3"\t"$3+1"\t"$6"\t1\t"$5}' ${workdir}/${trts[1]}_pattern.bed | sort -k1,1 -k2,2n - | bedtools map -a snk_script/hg38_10K_bin_sort.bed -b - -o count > ${workdir}/bin10k/ctrl_10k.bed &
 
 wait

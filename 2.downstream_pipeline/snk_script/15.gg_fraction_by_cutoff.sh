@@ -18,7 +18,6 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 END
 
-source ~/env_backup/.functions
 #!/usr/bin/bash
 
 IFS=' ' read -r -a cuts <<< "$1"
