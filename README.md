@@ -91,7 +91,7 @@ Required softwares:
 - `java openjdk 21.0.2-internal 2024-01-16`
 - `sambamba 1.0.0`
 - `python 3.12.2`
-And make sure all those softwares have been recorded into $PATH.
+- And make sure all those softwares have been recorded into $PATH.
 
 Required python modules:
 - `Bio 1.83`
@@ -209,7 +209,7 @@ Required extra softwares:
 - `deepTools 3.5.5`
 - `R 4.3.3`
 - `HOMER v4.11.1` with hg38 genome annotations installed
-And make sure all those softwares have been recorded into $PATH.
+- And make sure all those softwares have been recorded into $PATH.
 
 
 Required extra python modules:
@@ -249,4 +249,4 @@ Now, edit the pipeline file `main_downs.py` or `main_downs_brief.py`, change the
 ---
 6. Conduct downstream analysis.
 
-After configuring, you can test the pipeline and run it in the save way as described in step 4.
+After configuring, you can test the pipeline and run it in the same way as described in step 4.
