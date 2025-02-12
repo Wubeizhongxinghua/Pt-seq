@@ -17,13 +17,9 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 '''
-from rich import print, pretty
-from rich.traceback import install
-pretty.install()
-install(show_locals=True)
 import multiprocessing
 from functools import partial
-import rich_click as click
+import click
 
 def process_chunk(chunk, strand):
 	# 处理每个块的函数

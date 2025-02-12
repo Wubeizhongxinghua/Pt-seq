@@ -39,18 +39,18 @@ Directory structure:
 │   └── snk_script
 │       ├── ...
 ├── cal_covered_genome.py
-├── data
+├── data // --🔴 NEW--
 │   └── example_data
 │       ├── sample1_1.fq.gz
 │       ├── sample1_2.fq.gz
 │       ├── sample2_1.fq.gz
 │       └── sample2_2.fq.gz
-├── sample_id
+├── sample_id // --🔴 NEW-- 
 │   └── example_data.txt
 ├── ...
 ```
 
-`example_data.txt`:
+Where `example_data.txt`:
 ```
 sample1
 sample2
@@ -70,4 +70,49 @@ You only need to modify these variables based on your needs:
 
 If you have other more customized needs, just modify this file for free.
 
+4. Conduct basic alignment
 
+To finish this step, you shall install relavent softwares and run the pipeline `0.process_platin_q0_unique.snake.py`
+
+Required softwares:
+- `snakemake 7.32.3`
+- `trim_galore 0.6.1`
+- `FastQC 0.12.1`
+- `Bowtie2 2.5.4`
+- `samtools 1.19.2`, with `htslib 1.20`
+- `java openjdk 21.0.2-internal 2024-01-16`
+- `sambamba 1.0.0`
+
+Required python modules:
+- `Bio 1.83`
+- `pysam 0.22.1`
+- `pandas 2.2.2`
+- `click 8.1.7`
+
+
+Then, you can run this code to check your settings:
+```shell
+snakemake -s 0.process_platin_q0_unique.snake.py --dry-run --rerun-incomplete --rerun-triggers mtime -pr
+```
+
+If everything works fine, you can run the pipeline locally based on the shell code below:
+```shell
+snakemake -s 0.process_platin_q0_unique.snake.py -c 100 --rerun-incomplete --rerun-triggers mtime
+```
+
+Or submit the jobs into cluster (slurm):
+```shell
+mkdir -p cluster cluster_log logs
+snakemake --cluster "sbatch -N 1 -c {threads} -J '{rule}.{wildcards}' -o cluster_log/{rule}.{wildcards}.out -e logs/{rule}.{wildcards}.err -p PARTITION -A ACCOUNT --no-requeue --qos QOS" \ 
+	--nolock \
+	-s 0.process_platin_q0_unique.snake.py \
+	-j 100 \
+	--latency-wait 1000 \
+	--force-use-threads \
+	-pr \
+	--rerun-incomplete \
+	--rerun-triggers mtime > cluster_log/run.log 2> cluster/run.err
+```
+
+
+5. Conduct site calling and analysis

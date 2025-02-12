@@ -1,21 +1,21 @@
-'''    
-Copyright (c) 2024-02-12 by LiMingyang, YiLab, Peking University.    
-     
-Author: Li Mingyang (limingyang200101@gmail.com)    
-     
-Institute: AAIS, Peking University    
-     
-File Name: PTseq_analysis/xx.py                                                                              
-     
-Permission is hereby granted, free of charge, to any person obtaining a copy    
-of this software and associated documentation files (the "Software"), to deal    
-in the Software without restriction, including without limitation the rights    
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell    
-copies of the Software, and to permit persons to whom the Software is    
-furnished to do so, subject to the following conditions:    
-     
-The above copyright notice and this permission notice shall be included in all    
-copies or substantial portions of the Software.    
+'''	
+Copyright (c) 2024-02-12 by LiMingyang, YiLab, Peking University.	
+	 
+Author: Li Mingyang (limingyang200101@gmail.com)	
+	 
+Institute: AAIS, Peking University	
+	 
+File Name: PTseq_analysis/xx.py																			  
+	 
+Permission is hereby granted, free of charge, to any person obtaining a copy	
+of this software and associated documentation files (the "Software"), to deal	
+in the Software without restriction, including without limitation the rights	
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell	
+copies of the Software, and to permit persons to whom the Software is	
+furnished to do so, subject to the following conditions:	
+	 
+The above copyright notice and this permission notice shall be included in all	
+copies or substantial portions of the Software.	
 ''' 
 
 genome_dir = ""
@@ -29,36 +29,36 @@ sample_id_dict = {}
 for dataset in datasets:
 #sample format:
 # <platin>_<second_label>_[1|2].fq.gz <-> <platin>_<second_label>
-    sample_id_dict[dataset] = open(f'sample_id/{dataset}.txt').read().strip().split('\n')
+	sample_id_dict[dataset] = open(f'sample_id/{dataset}.txt').read().strip().split('\n')
 
 
 def gen_input():
-    required_file = []
-    for dataset in datasets:
-        for sample_id in sample_id_dict[dataset]:
-            required_file.append(f"output/{dataset}/trim/{sample_id}_1_val_1.fq.gz")
-    		required_file.append(f"output/{dataset}/trim/{sample_id}_2_val_2.fq.gz")
-    		required_file.append(f"output/{dataset}/trim/{sample_id}_1_val_1_fastqc.html")
-    		required_file.append(f"output/{dataset}/trim/{sample_id}_2_val_2_fastqc.html")
-    		required_file.append(f"output/{dataset}/trim/{sample_id}_rmSbfI_1.fq.gz")
-    		required_file.append(f"output/{dataset}/trim/{sample_id}_rmSbfI_2.fq.gz")
-    		required_file.append(f"output/{dataset}/align/model/{sample_id}_fwd.mip")
-    		required_file.append(f"output/{dataset}/align/model/{sample_id}_rvs.mip")
-    		required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted.bam")
-    		required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted.bam.stat")
-    		required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup.bam")
-    		required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup.bam.stat")
-    		required_file.append(f"output/{dataset}/align/genome/{sample_id}_cover_genome_covered.info")
-    		required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_fwd.bam")
-    		required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_rvs.bam")
-            required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_fwd_sig.txt")
-            required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_rvs_sig.txt")
-    return required_file
+	required_file = []
+	for dataset in datasets:
+		for sample_id in sample_id_dict[dataset]:
+			required_file.append(f"output/{dataset}/trim/{sample_id}_1_val_1.fq.gz")
+			required_file.append(f"output/{dataset}/trim/{sample_id}_2_val_2.fq.gz")
+			required_file.append(f"output/{dataset}/trim/{sample_id}_1_val_1_fastqc.html")
+			required_file.append(f"output/{dataset}/trim/{sample_id}_2_val_2_fastqc.html")
+			required_file.append(f"output/{dataset}/trim/{sample_id}_rmSbfI_1.fq.gz")
+			required_file.append(f"output/{dataset}/trim/{sample_id}_rmSbfI_2.fq.gz")
+			required_file.append(f"output/{dataset}/align/model/{sample_id}_fwd.mip")
+			required_file.append(f"output/{dataset}/align/model/{sample_id}_rvs.mip")
+			required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted.bam")
+			required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted.bam.stat")
+			required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup.bam")
+			required_file.append(f"output/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup.bam.stat")
+			required_file.append(f"output/{dataset}/align/genome/{sample_id}_cover_genome_covered.info")
+			required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_fwd.bam")
+			required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_genome_sorted_rmdup_rvs.bam")
+			required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_fwd_sig.txt")
+			required_file.append(f"output_q1_10_40_unique/{dataset}/align/genome/{sample_id}_rvs_sig.txt")
+	return required_file
 
 
 rule all:
 	input:
-        gen_input()
+		gen_input()
 
 rule trim_galore:
 	input:
