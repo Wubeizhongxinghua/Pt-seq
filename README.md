@@ -4,6 +4,125 @@ Pt seq is a high-throughput library construction method specifically designed to
 
 If you have any questions, feel free to propose an issue or contact Li Mingyang (limingyang200101@gmail.com or limingyang@stu.pku.edu.cn).
 
+
+## Main
+
+This repository contains 2 snakemake pipelines, for basic alignment pipeine and site calling, process pipeline separately. Detailed descriptions about this repository could be found at the paper.
+
+**The basic alignment pipeline:**
+```mermaid
+flowchart LR
+rawreads["Raw 
+				reads"]
+trim_galore(["Trim 
+					Galore"])
+trimreads["Trimmed 
+					Reads"]
+fastqc(["FastQC"])
+siterm(["Restriction site 
+		removing"])
+cleanreads["Clean 
+					Reads"]
+align(["Bowtie2 & 
+			Picard MarkDuplicates"])
+bam["Aligned 
+			Bam"]
+stats(["Basic Statistics"])
+mapq(["Filter MAPQ
+		[1,10] or ≥ 40"])
+cleanbam["Clean 
+				Bam"]
+process1(["Divide 
+				by strand"])
+process2(["Stop signal 
+				calculation"])
+sig["Signal File 
+			.sig"]
+down[/"Downstream 
+			Process"\]
+
+    subgraph Reads Processing
+        direction TB
+        rawreads ==> trim_galore
+        trim_galore ==> trimreads
+        trimreads -.-> fastqc
+        trimreads ==> siterm
+        siterm ==> cleanreads
+    end
+
+    cleanreads ==> align
+    align ==> bam
+
+    subgraph Alignment
+        direction TB
+        bam -.-> stats
+        bam ==> mapq
+        mapq ==> cleanbam
+        cleanbam ==> process1
+        process1 ==> process2
+        
+    end
+		
+    process2 ==> sig
+    sig ==> down
+    
+```
+
+
+**The downstream analysis pipeline:**
+```mermaid
+flowchart LR
+sigfile["Signal file 
+			.sig"]
+backgroundsig["Background 
+signal"]
+stopsitetrt["Treatment
+stop site"]
+stopsitect["Control 
+stop site"]
+hcsite["High confidence 
+site"]
+
+sitenumber["Site 
+number"]
+GGptrn["GG pattern 
+frequency"]
+enrichchr["Chromosomal 
+enrichment"]
+enrichele["Element 
+enrichment"]
+dis["Site 
+distance"]
+
+cluster["Site 
+cluster"]
+clusterpos["Cluster 
+distribution"]
+
+sigfile --> backgroundsig
+sigfile --> stopsitetrt
+backgroundsig --> stopsitetrt
+sigfile --> stopsitect
+backgroundsig --> stopsitect
+
+stopsitetrt --> hcsite
+stopsitect --> hcsite
+
+    subgraph "Site statistics (GG site or not)"
+        direction TB
+        hcsite --> sitenumber
+        hcsite --> GGptrn
+        hcsite --> enrichchr
+        hcsite --> enrichele
+        hcsite --> dis
+    end
+
+hcsite --> cluster
+cluster --> clusterpos
+```
+
+
+
 ## Section 1. Basic Preperation
 
 1. Clone the repository
