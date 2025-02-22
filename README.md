@@ -11,35 +11,22 @@ This repository contains 2 snakemake pipelines, for basic alignment pipeine and 
 
 **The basic alignment pipeline:**
 ```mermaid
-flowchart LR
-rawreads["Raw 
-				reads"]
-trim_galore(["Trim 
-					Galore"])
-trimreads["Trimmed 
-					Reads"]
+flowchart TD
+rawreads["Raw reads"]
+trim_galore(["Trim Galore"])
+trimreads["Trimmed Reads"]
 fastqc(["FastQC"])
-siterm(["Restriction site 
-		removing"])
-cleanreads["Clean 
-					Reads"]
-align(["Bowtie2 & 
-			Picard MarkDuplicates"])
-bam["Aligned 
-			Bam"]
+siterm(["Restriction site removing"])
+cleanreads["Clean Reads"]
+align(["Bowtie2 & Picard MarkDuplicates"])
+bam["Aligned Bam"]
 stats(["Basic Statistics"])
-mapq(["Filter MAPQ
-		[1,10] or ≥ 40"])
-cleanbam["Clean 
-				Bam"]
-process1(["Divide 
-				by strand"])
-process2(["Stop signal 
-				calculation"])
-sig["Signal File 
-			.sig"]
-down[/"Downstream 
-			Process"\]
+mapq(["Filter MAPQ [1,10] or ≥ 40"])
+cleanbam["Clean Bam"]
+process1(["Divide by strand"])
+process2(["Stop signal calculation"])
+sig["Signal File .sig"]
+down[/"Downstream Process"\]
 
     subgraph Reads Processing
         direction TB
