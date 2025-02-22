@@ -144,7 +144,7 @@ After clonning, your directory structure is like this:
 
 2. Prepare the raw data
 
-Inside the repository direction, create a directory called `data`, and put your Pt-seq `.fastq.gz` into the `data/{project_name}/` directory. In this example, we name the project `example_data`. After that, record the name of samples into `sample_id/{project_name}.txt` file.
+Inside the repository direction, create a directory called `data`, and put your Pt-seq `.fq.gz` into the `data/{project_name}/` directory. In this example, we name the project `example_data`. After that, record the name of samples into `sample_id/{project_name}.txt` file.
 
 Directory structure:
 
