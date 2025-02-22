@@ -59,10 +59,15 @@ down[/"Downstream Process"\]
 **The downstream analysis pipeline:**
 ```mermaid
 flowchart LR
-sigfile["Signal file 
-			.sig"]
-backgroundsig["Background 
-signal"]
+trtsigfile["Treatment 
+signal file .sig"]
+trtbackgroundsig["Treatment 
+background signal"]
+ctsigfile["Control Signal 
+file .sig"]
+ctbackgroundsig["Control 
+Background signal"]
+
 stopsitetrt["Treatment
 stop site"]
 stopsitect["Control 
@@ -86,11 +91,14 @@ cluster"]
 clusterpos["Cluster 
 distribution"]
 
-sigfile --> backgroundsig
-sigfile --> stopsitetrt
-backgroundsig --> stopsitetrt
-sigfile --> stopsitect
-backgroundsig --> stopsitect
+trtsigfile --> trtbackgroundsig
+ctsigfile --> ctbackgroundsig
+
+trtsigfile --> stopsitetrt
+trtbackgroundsig --> stopsitetrt
+
+ctsigfile --> stopsitect
+ctbackgroundsig --> stopsitect
 
 stopsitetrt --> hcsite
 stopsitect --> hcsite
